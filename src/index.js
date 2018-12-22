@@ -15,7 +15,7 @@ function MyArray(...args) {
 MyArray.prototype.push = function(element) {
   this[this.length] = element;
   this.length += 1;
-  return this;
+  return this.length;
 };
 
 MyArray.prototype.pop = function() {

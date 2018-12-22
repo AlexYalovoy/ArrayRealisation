@@ -1,5 +1,5 @@
 function MyArray(...args) {
-  if (arguments.length === 1) {
+  if (arguments.length === 1 && typeof args[0] === 'number') {
     for (let i = 0; i < args[0]; i++) {
       this[i] = undefined;
     }

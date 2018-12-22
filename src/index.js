@@ -32,12 +32,14 @@ MyArray.prototype.pop = function() {
 };
 
 MyArray.prototype.toString = function() {
-  let resultStr = '[ ';
+  let resultStr = '';
 
-  for (let i = 0; i < this.length; i++) {
-    resultStr += `${this[i]} `;
+  if (this.length > 0) {
+    for (let i = 0; i < this.length - 1; i++) {
+      resultStr += `${this[i]},`;
+    }
+    resultStr += `${this[this.length - 1]}`;
   }
-  resultStr += ']';
 
   return resultStr;
 };

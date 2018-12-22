@@ -89,11 +89,21 @@ MyArray.prototype.reduce = function(cb, initValue) {
   return accumulator;
 };
 
-MyArray.from = function(source) {
+MyArray.from = function(source, cb, context) {
   const resultArr = new MyArray(0);
 
   for (let i = 0; i < source.length; i++) {
-    resultArr.push(source[i]);
+    let newElem = null;
+
+    if (cb === undefined && context === undefined) {
+      newElem = source[i];
+    } else if (context === undefined) {
+      newElem = cb(source[i], i, this);
+    } else {
+      newElem = cb.call(context, source[i], i, this);
+    }
+
+    resultArr.push(newElem);
   }
 
   return resultArr;

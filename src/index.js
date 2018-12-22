@@ -67,9 +67,9 @@ MyArray.prototype.filter = function(cb) {
   return resultArr;
 };
 
-MyArray.prototype.forEach = function(cb) {
+MyArray.prototype.forEach = function(cb, context) {
   for (let i = 0; i < this.length; i++) {
-    cb(this[i], i, this);
+    cb.call(context, this[i], i, this);
   }
 };
 

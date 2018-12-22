@@ -19,6 +19,10 @@ MyArray.prototype.push = function(element) {
 };
 
 MyArray.prototype.pop = function() {
+  if (this.length === 0) {
+    return undefined;
+  }
+
   const lastItem = this[this.length - 1];
   this.length -= 1;
   delete this[this.length];

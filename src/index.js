@@ -12,9 +12,11 @@ function MyArray(...args) {
   }
 }
 
-MyArray.prototype.push = function(element) {
-  this[this.length] = element;
-  this.length += 1;
+MyArray.prototype.push = function(...args) {
+  for (let i = 0; i < args.length; i++) {
+    this[this.length] = args[i];
+    this.length += 1;
+  }
   return this.length;
 };
 

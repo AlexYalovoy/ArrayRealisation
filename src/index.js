@@ -98,8 +98,8 @@ MyArray.prototype.sort = function(cb) {
     callback = function(a, b) {
       let firstArg = a;
       let secondArg = b;
-      firstArg = firstArg.toString();
-      secondArg = secondArg.toString();
+      firstArg = `${firstArg}`;
+      secondArg = `${secondArg}`;
 
       if (firstArg > secondArg) {
         return 1;

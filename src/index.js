@@ -118,7 +118,7 @@ MyArray.prototype.sort = function(cb) {
     insertedItem = this[i];
     j = i - 1;
 
-    while (j >= 0 && cb(this[j], insertedItem) > 0) {
+    while (j >= 0 && callback(this[j], insertedItem) > 0) {
       this[j + 1] = this[j];
       j -= 1;
     }

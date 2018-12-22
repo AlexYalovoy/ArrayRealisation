@@ -44,11 +44,11 @@ MyArray.prototype.toString = function() {
   return resultStr;
 };
 
-MyArray.prototype.map = function(cb) {
+MyArray.prototype.map = function(cb, context) {
   const resultArr = new MyArray(0);
 
   for (let i = 0; i < this.length; i++) {
-    const newElement = cb(this[i], i, this);
+    const newElement = cb.call(context, this[i], i, this);
     resultArr.push(newElement);
   }
 

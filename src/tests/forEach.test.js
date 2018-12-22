@@ -2,7 +2,7 @@ import MyArray from '../index.js';
 
 
 describe('tests for method forEach', () => {
-  let arr = new MyArray();
+  let arr = null;
 
   beforeEach(() => {
     arr = new MyArray(1, 4, 0);

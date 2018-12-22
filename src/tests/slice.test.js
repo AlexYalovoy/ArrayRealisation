@@ -2,7 +2,7 @@ import MyArray from '../index';
 
 
 describe('tests for method slice', () => {
-  let arr = new MyArray();
+  let arr = null;
 
   beforeEach(() => {
     arr = new MyArray(1, 2, 3, 4, 5, 6, 7);

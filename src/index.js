@@ -167,5 +167,18 @@ MyArray.prototype[Symbol.iterator] = function() {
   };
 };
 
+MyArray.prototype.filter = function(cb, context) {
+  const cont = context === undefined ? this : context;
+  const resultArr = new MyArray();
+
+  for (let i = 0; i < this.length; i++) {
+    if (cb.call(cont, this[i], i, this) === true) {
+      resultArr.push(this[i]);
+    }
+  }
+
+  return resultArr;
+};
+
 
 export default MyArray;

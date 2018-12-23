@@ -3,7 +3,7 @@ import MyArray from '../index';
 
 describe('tests for method filter', () => {
   test('instance has method filter', () => {
-    const arr = null;
+    const arr = new MyArray();
 
     expect(arr.filter).toBeInstanceOf(Function);
   });

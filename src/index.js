@@ -192,4 +192,33 @@ MyArray.prototype.find = function(cb, thisArg) {
   return undefined;
 };
 
+MyArray.prototype.slice = function(beginArg, endArg) {
+  const resultArr = new MyArray();
+  const { length } = this;
+  let begin = null;
+  let end = null;
+
+  if (beginArg > this.length) {
+    return resultArr;
+  }
+
+  if (beginArg === undefined) {
+    begin = 0;
+  } else {
+    begin = length + beginArg % length;
+  }
+
+  if (endArg === undefined) {
+    end = length;
+  } else {
+    end = endArg > length ? length : endArg + length % length;
+  }
+
+  for (let i = begin; i < end; i++) {
+    resultArr.push(this[i]);
+  }
+
+  return resultArr;
+};
+
 export default MyArray;

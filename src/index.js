@@ -202,16 +202,12 @@ MyArray.prototype.slice = function(beginArg, endArg) {
     return resultArr;
   }
 
-  if (beginArg === undefined) {
-    begin = 0;
-  } else {
-    begin = length + beginArg % length;
-  }
+  begin = beginArg === undefined ? 0 : (length + beginArg) % length;
 
-  if (endArg === undefined) {
+  if (endArg === undefined || endArg > length) {
     end = length;
   } else {
-    end = endArg > length ? length : endArg + length % length;
+    end = (endArg + length) % length;
   }
 
   for (let i = begin; i < end; i++) {

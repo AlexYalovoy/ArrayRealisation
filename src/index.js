@@ -180,5 +180,16 @@ MyArray.prototype.filter = function(cb, context) {
   return resultArr;
 };
 
+MyArray.prototype.find = function(cb, thisArg) {
+  const context = thisArg === undefined ? this : thisArg;
+
+  for (let i = 0; i < this.length; i++) {
+    if (cb.call(context, this[i], i, this) === true) {
+      return this[i];
+    }
+  }
+
+  return undefined;
+};
 
 export default MyArray;

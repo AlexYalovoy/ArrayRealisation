@@ -194,9 +194,8 @@ MyArray.prototype.find = function(cb, thisArg) {
 
 MyArray.prototype.slice = function(beginArg, endArg) {
   const resultArr = new MyArray();
-  const { length } = this;
   let begin = 0;
-  let end = length;
+  let end = this.length;
 
   if (beginArg > this.length) {
     return resultArr;
@@ -206,16 +205,16 @@ MyArray.prototype.slice = function(beginArg, endArg) {
     begin = beginArg;
   }
 
-  if (beginArg < 0 && Math.abs(beginArg) < length) {
-    begin = length + beginArg;
+  if (beginArg < 0 && Math.abs(beginArg) < this.length) {
+    begin = this.length + beginArg;
   }
 
-  if (endArg >= 0 && endArg <= length) {
+  if (endArg >= 0 && endArg <= this.length) {
     end = endArg;
   }
 
   if (endArg < 0) {
-    end = length + endArg;
+    end = this.length + endArg;
   }
 
   for (let i = begin; i < end; i++) {

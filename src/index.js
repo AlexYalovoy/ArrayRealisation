@@ -55,18 +55,6 @@ MyArray.prototype.map = function(cb, context) {
   return resultArr;
 };
 
-MyArray.prototype.filter = function(cb) {
-  const resultArr = new MyArray(0);
-
-  for (let i = 0; i < this.length; i++) {
-    if (cb(this[i], i, this)) {
-      resultArr.push(this[i]);
-    }
-  }
-
-  return resultArr;
-};
-
 MyArray.prototype.forEach = function(cb, context) {
   for (let i = 0; i < this.length; i++) {
     cb.call(context, this[i], i, this);

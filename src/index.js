@@ -195,19 +195,27 @@ MyArray.prototype.find = function(cb, thisArg) {
 MyArray.prototype.slice = function(beginArg, endArg) {
   const resultArr = new MyArray();
   const { length } = this;
-  let begin = null;
-  let end = null;
+  let begin = 0;
+  let end = length;
 
   if (beginArg > this.length) {
     return resultArr;
   }
 
-  begin = beginArg === undefined ? 0 : (length + beginArg) % length;
+  if (beginArg > 0) {
+    begin = beginArg;
+  }
 
-  if (endArg === undefined || endArg > length) {
-    end = length;
-  } else {
-    end = (endArg + length) % length;
+  if (beginArg < 0 && Math.abs(beginArg) < length) {
+    begin = length + beginArg;
+  }
+
+  if (endArg >= 0 && endArg <= length) {
+    end = endArg;
+  }
+
+  if (endArg < 0) {
+    end = length + endArg;
   }
 
   for (let i = begin; i < end; i++) {

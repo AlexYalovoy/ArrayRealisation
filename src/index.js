@@ -44,7 +44,8 @@ MyArray.prototype.toString = function() {
   return resultStr;
 };
 
-MyArray.prototype.map = function(cb, context) {
+MyArray.prototype.map = function(cb, thisArg) {
+  const context = thisArg === undefined ? this : thisArg;
   const resultArr = new MyArray(0);
 
   for (let i = 0; i < this.length; i++) {
@@ -55,7 +56,9 @@ MyArray.prototype.map = function(cb, context) {
   return resultArr;
 };
 
-MyArray.prototype.forEach = function(cb, context) {
+MyArray.prototype.forEach = function(cb, thisArg) {
+  const context = thisArg === undefined ? this : thisArg;
+
   for (let i = 0; i < this.length; i++) {
     cb.call(context, this[i], i, this);
   }
@@ -77,16 +80,15 @@ MyArray.prototype.reduce = function(cb, initValue) {
   return accumulator;
 };
 
-MyArray.from = function(source, cb, context) {
+MyArray.from = function(source, cb, thisArg) {
+  const context = thisArg === undefined ? this : thisArg;
   const resultArr = new MyArray(0);
 
   for (let i = 0; i < source.length; i++) {
     let newElem = null;
 
-    if (cb === undefined && context === undefined) {
+    if (cb === undefined && thisArg === undefined) {
       newElem = source[i];
-    } else if (context === undefined) {
-      newElem = cb(source[i], i, this);
     } else {
       newElem = cb.call(context, source[i], i, this);
     }
@@ -155,12 +157,12 @@ MyArray.prototype[Symbol.iterator] = function() {
   };
 };
 
-MyArray.prototype.filter = function(cb, context) {
-  const cont = context === undefined ? this : context;
+MyArray.prototype.filter = function(cb, thisArg) {
+  const context = thisArg === undefined ? this : thisArg;
   const resultArr = new MyArray();
 
   for (let i = 0; i < this.length; i++) {
-    if (cb.call(cont, this[i], i, this) === true) {
+    if (cb.call(context, this[i], i, this) === true) {
       resultArr.push(this[i]);
     }
   }

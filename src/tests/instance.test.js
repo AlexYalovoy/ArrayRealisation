@@ -44,8 +44,8 @@ describe('tests for instance', () => {
   });
 
   test('Class has only declarated static method and common like \'length\', \'prototype\', \'from\', \'name\'', () => {
-    const declaratedMethods = ['length', 'prototype', 'from', 'name'];
-    const staticMethods = Reflect.ownKeys(MyArray);
+    const declaratedMethods = ['length', 'prototype', 'from', 'name'].sort();
+    const staticMethods = Reflect.ownKeys(MyArray).sort();
 
     expect(staticMethods).toEqual(declaratedMethods);
   });

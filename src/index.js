@@ -1,14 +1,14 @@
 function MyArray(...args) {
-  if (arguments.length === 1 && typeof args[0] === 'number') {
+  if (args.length === 1 && typeof args[0] === 'number') {
     for (let i = 0; i < args[0]; i++) {
       this[i] = undefined;
     }
     this.length = args[0];
   } else {
-    for (let i = 0; i < arguments.length; i++) {
+    for (let i = 0; i < args.length; i++) {
       this[i] = args[i];
     }
-    this.length = arguments.length;
+    this.length = args.length;
   }
 }
 

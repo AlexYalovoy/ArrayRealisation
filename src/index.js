@@ -65,13 +65,15 @@ MyArray.prototype.forEach = function(cb, thisArg) {
 };
 
 MyArray.prototype.reduce = function(cb, initValue) {
-  let accumulator = null;
-
-  if (initValue === undefined) {
-    accumulator = this[0];
-  } else {
-    accumulator = cb(initValue, this[0], 0, this);
+  if (this.length === 0 && initValue !== undefined) {
+    return initValue;
   }
+
+  if (this.length === 0 && initValue === undefined) {
+    throw new TypeError();
+  }
+
+  let accumulator = initValue === undefined ? this[0] : cb(initValue, this[0], 0, this);
 
   for (let i = 1; i < this.length; i++) {
     accumulator = cb(accumulator, this[i], i, this);

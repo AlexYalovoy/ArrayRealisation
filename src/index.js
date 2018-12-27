@@ -65,8 +65,6 @@ MyArray.prototype.forEach = function(cb, thisArg) {
 };
 
 MyArray.prototype.reduce = function(cb, initValue) {
-  let accumulator = null;
-
   if (this.length === 0 && initValue !== undefined) {
     return initValue;
   }
@@ -75,11 +73,7 @@ MyArray.prototype.reduce = function(cb, initValue) {
     throw new TypeError();
   }
 
-  if (initValue === undefined) {
-    accumulator = this[0];
-  } else {
-    accumulator = cb(initValue, this[0], 0, this);
-  }
+  let accumulator = initValue === undefined ? this[0] : cb(initValue, this[0], 0, this);
 
   for (let i = 1; i < this.length; i++) {
     accumulator = cb(accumulator, this[i], i, this);

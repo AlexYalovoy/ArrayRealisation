@@ -103,10 +103,8 @@ MyArray.prototype.sort = function(cb) {
 
   if (!callback) {
     callback = function(a, b) {
-      let firstArg = a;
-      let secondArg = b;
-      firstArg = `${firstArg}`;
-      secondArg = `${secondArg}`;
+      const firstArg = `${a}`;
+      const secondArg = `${b}`;
 
       if (firstArg > secondArg) {
         return 1;

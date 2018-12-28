@@ -216,7 +216,7 @@ MyArray.prototype.slice = function(beginArg, endArg) {
 MyArray.prototype[Symbol.toPrimitive] = function(hint) {
   switch (hint) {
   case 'string':
-    return `Array has ${this.length} elements`;
+    return this.toString();
 
   case 'number':
     return this.length;

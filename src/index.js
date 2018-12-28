@@ -1,8 +1,5 @@
 function MyArray(...args) {
   if (args.length === 1 && typeof args[0] === 'number') {
-    for (let i = 0; i < args[0]; i++) {
-      this[i] = undefined;
-    }
     this.length = args[0];
   } else {
     for (let i = 0; i < args.length; i++) {
@@ -46,7 +43,7 @@ MyArray.prototype.toString = function() {
 
 MyArray.prototype.map = function(cb, thisArg) {
   const context = thisArg === undefined ? this : thisArg;
-  const resultArr = new MyArray(0);
+  const resultArr = new MyArray();
 
   for (let i = 0; i < this.length; i++) {
     const newElement = cb.call(context, this[i], i, this);
@@ -84,7 +81,7 @@ MyArray.prototype.reduce = function(cb, initValue) {
 
 MyArray.from = function(source, cb, thisArg) {
   const context = thisArg === undefined ? this : thisArg;
-  const resultArr = new MyArray(0);
+  const resultArr = new MyArray();
 
   for (let i = 0; i < source.length; i++) {
     let newElem = null;
@@ -106,10 +103,8 @@ MyArray.prototype.sort = function(cb) {
 
   if (!callback) {
     callback = function(a, b) {
-      let firstArg = a;
-      let secondArg = b;
-      firstArg = `${firstArg}`;
-      secondArg = `${secondArg}`;
+      const firstArg = `${a}`;
+      const secondArg = `${b}`;
 
       if (firstArg > secondArg) {
         return 1;
@@ -219,7 +214,7 @@ MyArray.prototype.slice = function(beginArg, endArg) {
 MyArray.prototype[Symbol.toPrimitive] = function(hint) {
   switch (hint) {
   case 'string':
-    return `Array has ${this.length} elements`;
+    return this.toString();
 
   case 'number':
     return this.length;

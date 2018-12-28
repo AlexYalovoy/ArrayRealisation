@@ -43,7 +43,7 @@ MyArray.prototype.toString = function() {
 
 MyArray.prototype.map = function(cb, thisArg) {
   const context = thisArg === undefined ? this : thisArg;
-  const resultArr = new MyArray(0);
+  const resultArr = new MyArray();
 
   for (let i = 0; i < this.length; i++) {
     const newElement = cb.call(context, this[i], i, this);
@@ -81,7 +81,7 @@ MyArray.prototype.reduce = function(cb, initValue) {
 
 MyArray.from = function(source, cb, thisArg) {
   const context = thisArg === undefined ? this : thisArg;
-  const resultArr = new MyArray(0);
+  const resultArr = new MyArray();
 
   for (let i = 0; i < source.length; i++) {
     let newElem = null;

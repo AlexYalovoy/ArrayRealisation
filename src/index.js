@@ -41,23 +41,20 @@ MyArray.prototype.toString = function() {
   return resultStr;
 };
 
-MyArray.prototype.map = function(cb, thisArg) {
-  const context = thisArg === undefined ? this : thisArg;
+MyArray.prototype.map = function(cb, thisArg = this) {
   const resultArr = new MyArray();
 
   for (let i = 0; i < this.length; i++) {
-    const newElement = cb.call(context, this[i], i, this);
+    const newElement = cb.call(thisArg, this[i], i, this);
     resultArr.push(newElement);
   }
 
   return resultArr;
 };
 
-MyArray.prototype.forEach = function(cb, thisArg) {
-  const context = thisArg === undefined ? this : thisArg;
-
+MyArray.prototype.forEach = function(cb, thisArg = this) {
   for (let i = 0; i < this.length; i++) {
-    cb.call(context, this[i], i, this);
+    cb.call(thisArg, this[i], i, this);
   }
 };
 
@@ -79,17 +76,16 @@ MyArray.prototype.reduce = function(cb, initValue) {
   return accumulator;
 };
 
-MyArray.from = function(source, cb, thisArg) {
-  const context = thisArg === undefined ? this : thisArg;
+MyArray.from = function(source, cb, thisArg = this) {
   const resultArr = new MyArray();
 
   for (let i = 0; i < source.length; i++) {
     let newElem = null;
 
-    if (cb === undefined && thisArg === undefined) {
+    if (cb === undefined) {
       newElem = source[i];
     } else {
-      newElem = cb.call(context, source[i], i, this);
+      newElem = cb.call(thisArg, source[i], i, this);
     }
 
     resultArr.push(newElem);
@@ -154,12 +150,11 @@ MyArray.prototype[Symbol.iterator] = function() {
   };
 };
 
-MyArray.prototype.filter = function(cb, thisArg) {
-  const context = thisArg === undefined ? this : thisArg;
+MyArray.prototype.filter = function(cb, thisArg = this) {
   const resultArr = new MyArray();
 
   for (let i = 0; i < this.length; i++) {
-    if (cb.call(context, this[i], i, this) === true) {
+    if (cb.call(thisArg, this[i], i, this) === true) {
       resultArr.push(this[i]);
     }
   }
@@ -167,11 +162,9 @@ MyArray.prototype.filter = function(cb, thisArg) {
   return resultArr;
 };
 
-MyArray.prototype.find = function(cb, thisArg) {
-  const context = thisArg === undefined ? this : thisArg;
-
+MyArray.prototype.find = function(cb, thisArg = this) {
   for (let i = 0; i < this.length; i++) {
-    if (cb.call(context, this[i], i, this) === true) {
+    if (cb.call(thisArg, this[i], i, this) === true) {
       return this[i];
     }
   }

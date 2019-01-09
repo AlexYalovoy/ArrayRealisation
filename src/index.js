@@ -19,7 +19,7 @@ MyArray.prototype.push = function(...args) {
 
 MyArray.prototype.pop = function() {
   if (this.length === 0) {
-    return undefined;
+    return;
   }
 
   const lastItem = this[this.length - 1];
@@ -45,8 +45,8 @@ MyArray.prototype.map = function(cb, thisArg = this) {
   const resultArr = new MyArray();
 
   for (let i = 0; i < this.length; i++) {
-    const newElement = cb.call(thisArg, this[i], i, this);
-    resultArr.push(newElement);
+    resultArr[resultArr.length] = cb.call(thisArg, this[i], i, this);
+    resultArr.length += 1;
   }
 
   return resultArr;
@@ -88,7 +88,8 @@ MyArray.from = function(source, cb, thisArg = this) {
       newElem = cb.call(thisArg, source[i], i, this);
     }
 
-    resultArr.push(newElem);
+    resultArr[resultArr.length] = newElem;
+    resultArr.length += 1;
   }
 
   return resultArr;
@@ -154,8 +155,9 @@ MyArray.prototype.filter = function(cb, thisArg = this) {
   const resultArr = new MyArray();
 
   for (let i = 0; i < this.length; i++) {
-    if (cb.call(thisArg, this[i], i, this) === true) {
-      resultArr.push(this[i]);
+    if (cb.call(thisArg, this[i], i, this)) {
+      resultArr[resultArr.length] = this[i];
+      resultArr.length += 1;
     }
   }
 
@@ -164,12 +166,10 @@ MyArray.prototype.filter = function(cb, thisArg = this) {
 
 MyArray.prototype.find = function(cb, thisArg = this) {
   for (let i = 0; i < this.length; i++) {
-    if (cb.call(thisArg, this[i], i, this) === true) {
+    if (cb.call(thisArg, this[i], i, this)) {
       return this[i];
     }
   }
-
-  return undefined;
 };
 
 MyArray.prototype.slice = function(beginArg, endArg) {
@@ -198,7 +198,8 @@ MyArray.prototype.slice = function(beginArg, endArg) {
   }
 
   for (let i = begin; i < end; i++) {
-    resultArr.push(this[i]);
+    resultArr[resultArr.length] = this[i];
+    resultArr.length += 1;
   }
 
   return resultArr;

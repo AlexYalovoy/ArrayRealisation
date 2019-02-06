@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",
-    "lint": "eslint --ext .js src/",
+    "lint": "eslint --ext .js src/"
   },
   "pre-commit": [
     "lint"

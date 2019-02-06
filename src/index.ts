@@ -1,4 +1,8 @@
-class MyArray {
+interface IMyArray {
+  length: number;
+}
+
+class MyArray implements IMyArray {
   constructor(...args) {
     if (args.length === 1 && typeof args[0] === 'number') {
       this.length = args[0];

@@ -5,10 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",
-    "watch": "webpack --watch",
-    "start": "webpack-dev-server --open",
     "lint": "eslint --ext .js src/",
-    "build": "webpack"
   },
   "pre-commit": [
     "lint"
@@ -17,8 +14,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "clean-webpack-plugin": "^1.0.0",
     "cross-env": "^5.2.0",
     "eslint": "^5.10.0",
@@ -32,5 +29,7 @@
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
   },
-  "dependencies": {}
+  "dependencies": {
+    "ts-loader": "^5.3.3"
+  }
 }

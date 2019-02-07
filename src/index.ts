@@ -1,9 +1,9 @@
-interface IMyArray<T> {
+interface IIterable<T> {
   length: number;
   [key: number]: T;
 }
 
-class MyArray<T> implements IMyArray<T> {
+class MyArray<T> implements IIterable<T> {
   length: number;
   [key: number]: T;
 
@@ -85,7 +85,7 @@ class MyArray<T> implements IMyArray<T> {
     return accumulator;
   }
 
-  static from<U>(source: IMyArray<U>, cb: (element: U, index: number, pointer: MyArray<U>) => MyArray<U>, thisArg: any = this): MyArray<U> {
+  static from<U>(source: IIterable<U>, cb: (element: U, index: number, pointer: MyArray<U>) => MyArray<U>, thisArg: any = this): MyArray<U> {
     const resultArr: MyArray<U> = new MyArray<U>();
   
     for (let i = 0; i < source.length; i++) {

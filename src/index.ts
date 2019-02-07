@@ -31,17 +31,17 @@ class MyArray<T> implements IMyArray<T> {
       return;
     }
   
-    const lastItem = this[this.length - 1];
+    const lastItem: T = this[this.length - 1];
     this.length -= 1;
     delete this[this.length];
     return lastItem;
   }
 
   toString(): string {
-    let resultStr = '';
+    let resultStr: string = '';
   
     if (this.length > 0) {
-      for (let i = 0; i < this.length - 1; i++) {
+      for (let i: number = 0; i < this.length - 1; i++) {
         resultStr += `${this[i]},`;
       }
       resultStr += `${this[this.length - 1]}`;
@@ -51,7 +51,7 @@ class MyArray<T> implements IMyArray<T> {
   }
   
   map(cb: (element: T, index: number, pointer: MyArray<T>) => any, thisArg: any = this): MyArray<T> {
-    const resultArr = new MyArray<T>();
+    const resultArr: MyArray<T> = new MyArray<T>();
   
     for (let i = 0; i < this.length; i++) {
       resultArr[resultArr.length] = cb.call(thisArg, this[i], i, this);
@@ -76,7 +76,7 @@ class MyArray<T> implements IMyArray<T> {
       throw new TypeError();
     }
   
-    let accumulator = initValue === undefined ? this[0] : cb(initValue, this[0], 0, this);
+    let accumulator: any = initValue === undefined ? this[0] : cb(initValue, this[0], 0, this);
   
     for (let i = 1; i < this.length; i++) {
       accumulator = cb(accumulator, this[i], i, this);
@@ -86,7 +86,7 @@ class MyArray<T> implements IMyArray<T> {
   }
   
   from(source: IMyArray<T>, cb: (element: T, index: number, pointer: MyArray<T>) => T, thisArg: any = this): MyArray<T>{
-    const resultArr = new MyArray<T>();
+    const resultArr: MyArray<T> = new MyArray<T>();
   
     for (let i = 0; i < source.length; i++) {
       let newElem = null;
@@ -109,8 +109,8 @@ class MyArray<T> implements IMyArray<T> {
   
     if (!callback) {
       callback = function(a: T, b: T): number {
-        const firstArg = `${a}`;
-        const secondArg = `${b}`;
+        const firstArg: string = `${a}`;
+        const secondArg: string = `${b}`;
   
         if (firstArg > secondArg) {
           return 1;
@@ -122,8 +122,8 @@ class MyArray<T> implements IMyArray<T> {
       };
     }
   
-    let insertedItem = null;
-    let j = 0;
+    let insertedItem: T = null;
+    let j: number = 0;
   
     for (let i = 0; i < this.length; i++) {
       insertedItem = this[i];
@@ -140,7 +140,7 @@ class MyArray<T> implements IMyArray<T> {
   }
 
   filter(cb: (element: T, index: number, pointer: MyArray<T>) => any, thisArg: any = this): MyArray<T> {
-    const resultArr = new MyArray<T>();
+    const resultArr: MyArray<T> = new MyArray<T>();
   
     for (let i = 0; i < this.length; i++) {
       if (cb.call(thisArg, this[i], i, this)) {
@@ -161,9 +161,9 @@ class MyArray<T> implements IMyArray<T> {
   }
   
   slice(beginArg?: number, endArg?: number): MyArray<T>{
-    const resultArr = new MyArray<T>();
-    let begin = 0;
-    let end = this.length;
+    const resultArr: MyArray<T> = new MyArray<T>();
+    let begin: number = 0;
+    let end: number = this.length;
   
     if (beginArg > this.length) {
       return resultArr;
@@ -207,8 +207,8 @@ class MyArray<T> implements IMyArray<T> {
   }
 
   [Symbol.iterator](): object {
-    let index = 0;
-    const that = this;
+    let index: number = 0;
+    const that: MyArray<T> = this;
   
     return {
       next(): object {

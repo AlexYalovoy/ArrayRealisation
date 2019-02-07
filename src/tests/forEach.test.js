@@ -1,4 +1,4 @@
-import MyArray from '../index.js';
+import MyArray from '../../dist/index.js';
 
 
 describe('tests for method forEach', () => {

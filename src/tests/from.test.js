@@ -1,4 +1,4 @@
-import MyArray from '../index';
+import MyArray from '../../dist/index.js';
 
 describe('tests for method FROM', () => {
   test('Class has static method FROM', () => {

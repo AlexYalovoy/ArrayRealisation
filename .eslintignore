@@ -1,3 +1,4 @@
 config/*
 dist/*
 src/index.ts
+src/index.js

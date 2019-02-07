@@ -26,7 +26,7 @@ class MyArray<T> implements IMyArray<T> {
     return this.length;
   }
 
-  pop(): T {
+  pop(): T | undefined {
     if (this.length === 0) {
       return;
     }
@@ -84,9 +84,9 @@ class MyArray<T> implements IMyArray<T> {
   
     return accumulator;
   }
-  
-  from(source: IMyArray<T>, cb: (element: T, index: number, pointer: MyArray<T>) => T, thisArg: any = this): MyArray<T>{
-    const resultArr: MyArray<T> = new MyArray<T>();
+
+  static from<U>(source: IMyArray<U>, cb: (element: U, index: number, pointer: MyArray<U>) => MyArray<U>, thisArg: any = this): MyArray<U> {
+    const resultArr: MyArray<U> = new MyArray<U>();
   
     for (let i = 0; i < source.length; i++) {
       let newElem = null;
@@ -152,7 +152,7 @@ class MyArray<T> implements IMyArray<T> {
     return resultArr;
   }
   
-  find(cb: (element: T, index: number, pointer: MyArray<T>) => any, thisArg: any= this): T | void {
+  find(cb: (element: T, index: number, pointer: MyArray<T>) => any, thisArg: any= this): T | undefined {
     for (let i = 0; i < this.length; i++) {
       if (cb.call(thisArg, this[i], i, this)) {
         return this[i];
@@ -227,3 +227,5 @@ class MyArray<T> implements IMyArray<T> {
     };
   }
 }
+
+export default MyArray;

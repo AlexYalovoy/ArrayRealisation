@@ -1,4 +1,4 @@
-import MyArray from '../../dist/index.js';
+import MyArray from '../index.js';
 
 
 describe('tests for method pop', () => {

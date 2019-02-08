@@ -7,12 +7,12 @@ class MyArray<T> implements IMyArrayble<T> {
   length: number;
   [key: number]: T;
 
-  constructor(...args: any[]) {
+  constructor(...args: T[] | number[]) {
     if (args.length === 1 && typeof args[0] === 'number') {
-      this.length = args[0];
+      this.length = args[0] as number;
     } else {
       for (let i : number = 0; i < args.length; i++) {
-        this[i] = args[i];
+        this[i] = args[i] as T;
       }
       this.length = args.length;
     }
@@ -85,7 +85,8 @@ class MyArray<T> implements IMyArrayble<T> {
     return accumulator;
   }
 
-  static from<U>(source: IMyArrayble<U>, cb: (element: U, index: number, pointer: MyArray<U>) => MyArray<U>, thisArg: any = this): MyArray<U> {
+
+  static from<T, U>(source: IMyArrayble<T>, cb: (element: T, index: number, pointer: MyArray<U>) => MyArray<U>, thisArg: any = this): MyArray<U> {
     const resultArr: MyArray<U> = new MyArray<U>();
   
     for (let i = 0; i < source.length; i++) {

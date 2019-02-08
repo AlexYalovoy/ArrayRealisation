@@ -1,9 +1,9 @@
-interface IIterable<T> {
+interface IMyArrayble<T> {
   length: number;
   [key: number]: T;
 }
 
-class MyArray<T> implements IIterable<T> {
+class MyArray<T> implements IMyArrayble<T> {
   length: number;
   [key: number]: T;
 
@@ -85,7 +85,7 @@ class MyArray<T> implements IIterable<T> {
     return accumulator;
   }
 
-  static from<U>(source: IIterable<U>, cb: (element: U, index: number, pointer: MyArray<U>) => MyArray<U>, thisArg: any = this): MyArray<U> {
+  static from<U>(source: IMyArrayble<U>, cb: (element: U, index: number, pointer: MyArray<U>) => MyArray<U>, thisArg: any = this): MyArray<U> {
     const resultArr: MyArray<U> = new MyArray<U>();
   
     for (let i = 0; i < source.length; i++) {
@@ -160,7 +160,7 @@ class MyArray<T> implements IIterable<T> {
     }
   }
   
-  slice(beginArg?: number, endArg?: number): MyArray<T>{
+  slice(beginArg?: number, endArg?: number): MyArray<T> {
     const resultArr: MyArray<T> = new MyArray<T>();
     let begin: number = 0;
     let end: number = this.length;

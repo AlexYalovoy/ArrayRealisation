@@ -50,8 +50,8 @@ class MyArray<T> implements IIterable<T> {
     return resultStr;
   }
   
-  map(cb: (element: T, index: number, pointer: MyArray<T>) => any, thisArg: any = this): MyArray<T> {
-    const resultArr: MyArray<T> = new MyArray<T>();
+  map<U>(cb: (element: T, index: number, pointer: MyArray<T>) => U, thisArg: any = this): MyArray<U> {
+    const resultArr: MyArray<U> = new MyArray<U>();
   
     for (let i = 0; i < this.length; i++) {
       resultArr[resultArr.length] = cb.call(thisArg, this[i], i, this);

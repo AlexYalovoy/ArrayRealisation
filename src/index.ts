@@ -1,9 +1,9 @@
-interface IMyArrayble<T> {
+interface IArrayLike<T> {
   length: number;
   [key: number]: T;
 }
 
-class MyArray<T> implements IMyArrayble<T> {
+class MyArray<T> implements IArrayLike<T> {
   length: number;
   [key: number]: T;
 
@@ -86,7 +86,7 @@ class MyArray<T> implements IMyArrayble<T> {
   }
 
 
-  static from<T, U>(source: IMyArrayble<T>, cb: (element: T, index: number, pointer: MyArray<U>) => MyArray<U>, thisArg: any = this): MyArray<U> {
+  static from<T, U>(source: IArrayLike<T>, cb: (element: T, index: number, pointer: MyArray<U>) => MyArray<U>, thisArg: any = this): MyArray<U> {
     const resultArr: MyArray<U> = new MyArray<U>();
   
     for (let i = 0; i < source.length; i++) {

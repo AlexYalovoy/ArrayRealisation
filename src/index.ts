@@ -67,7 +67,7 @@ class MyArray<T> implements IArrayLike<T> {
     }
   }
   
-  reduce(cb: (accumulator: any, element: T, index: number, pointer: MyArray<T> ) => any, initValue?: any): any {
+  reduce<U>(cb: (accumulator: U, element: T, index: number, pointer: MyArray<T> ) => U, initValue?: any): U {
     if (this.length === 0 && initValue !== undefined) {
       return initValue;
     }
